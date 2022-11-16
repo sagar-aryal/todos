@@ -1,1 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    to bottom,
+    #2d831e,
+    #63932b,
+    #8ea33e,
+    #b6b356,
+    #dac372
+  );
+  background-repeat: no-repeat;
+  font-family: "Lora", serif;
+  font-weight: 400;
+  color: #fff;
+  height: 100vh;
+}
+
+/* todos header section */
+header {
+  height: 80px;
+  background: #85a114;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+header .left,
+header .right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+header .left img {
+  width: 40px;
+}
+
+header .left h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+header .right .notification-btn {
+  padding: 0 15px;
+  position: relative;
+}
+
+header .right .notification-btn span {
+  position: absolute;
+  top: -15px;
+  right: -5px;
+  height: 25px;
+  width: 25px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgb(250, 33, 33);
+  font-size: 12px;
+}
+
+/* todos add to do list form */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+form label {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  display: block;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 6px;
+  margin: 8px 0;
+  border: 1px solid rgb(218, 240, 18);
+  border-radius: 5px;
+  outline: none;
+}
+
+form button {
+  background: rgb(11, 93, 247);
+  font-size: 16x;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  width: 100px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 8px;
+}
+
+form button:hover {
+  background: rgba(11, 93, 247, 0.6);
+}
+
+/* todos table section */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  color: #000;
+  text-align: center;
+  padding: 6px;
+  border-left: 1px solid #dac372;
+}
+
+th {
+  font-size: 18px;
+  background-color: #e2dada;
+}
+
+tr:nth-child(odd) {
+  background-color: #fcf6f6;
+}
