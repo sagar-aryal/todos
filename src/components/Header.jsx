@@ -1,6 +1,6 @@
 import logo from "../assets/logo.png";
 
-const Header = ({ date }) => {
+const Header = ({ date, todos }) => {
   return (
     <header>
       <div className="left">
@@ -26,7 +26,7 @@ const Header = ({ date }) => {
         </div>
         <div className="notification-btn">
           <i className="fa-solid fa-bell">
-            <span>2</span>
+            <span>{todos.length}</span>
           </i>
         </div>
       </div>

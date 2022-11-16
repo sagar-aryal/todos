@@ -4,16 +4,14 @@ import AddTodos from "./components/AddTodoForm";
 import Header from "./components/Header";
 import Table from "./components/Table";
 
-const initialTodos = Object.freeze({
-  todo: "",
-  datetime: "",
-  priority: "",
-});
-
 const App = () => {
   const [date, setDate] = useState(new Date());
-  const [values, setvalues] = useState(initialTodos);
-  const [formData, setFormData] = useState("");
+  const [values, setvalues] = useState({
+    todo: "",
+    datetime: "",
+    priority: "",
+  });
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     const interval = setDate(() => setDate(new Date()), 1000);
@@ -23,12 +21,12 @@ const App = () => {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setvalues({ ...values, [name]: value });
+    setvalues((preValues) => ({ ...preValues, [name]: value }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormData(values);
+    setTodos([...todos, values]);
     setvalues({
       todo: "",
       datetime: "",
@@ -38,13 +36,13 @@ const App = () => {
 
   return (
     <>
-      <Header date={date} />
+      <Header date={date} todos={todos} />
       <AddTodos
         values={values}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <Table formData={formData} />
+      <Table todos={todos} />
     </>
   );
 };

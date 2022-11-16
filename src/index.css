@@ -142,3 +142,8 @@ tbody tr {
 tbody tr:hover {
   background-color: #e2dada;
 }
+
+.inactive {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}

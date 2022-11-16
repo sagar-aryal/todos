@@ -1,5 +1,13 @@
-const Table = ({ formData }) => {
-  console.log(formData);
+import { useState } from "react";
+
+const Table = ({ todos }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = (event) => {
+    // 👇️ toggle isActive state on click
+    setIsActive((current) => !current);
+  };
+
   return (
     <div className="container">
       <table>
@@ -12,17 +20,29 @@ const Table = ({ formData }) => {
             <th>Delete</th>
           </tr>
         </thead>
-        {/*  <tbody>
-          {formData?.map((data) => (
-            <tr key={data.todo}>
+        <tbody>
+          {todos?.map((data) => (
+            <tr
+              key={data.todo}
+              className={isActive ? "inactive" : ""}
+              onClick={handleClick}
+            >
               <td>{data.todo}</td>
-              <td>{data.datatime}</td>
+              <td>{data.datetime}</td>
               <td>{data.priority}</td>
-              <td>Edit</td>
-              <td>Delete</td>
+              <td>
+                <button>
+                  <i className="fa-sharp fa-solid fa-pen-to-square"></i>
+                </button>
+              </td>
+              <td>
+                <button>
+                  <i className="fa-sharp fa-solid fa-trash"></i>
+                </button>
+              </td>
             </tr>
           ))}
-        </tbody> */}
+        </tbody>
       </table>
     </div>
   );
