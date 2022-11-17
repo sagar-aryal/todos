@@ -7,14 +7,7 @@
 }
 
 body {
-  background-image: linear-gradient(
-    to bottom,
-    #2d831e,
-    #63932b,
-    #8ea33e,
-    #b6b356,
-    #dac372
-  );
+  background-image: linear-gradient(to bottom, #2d831e, #dac372);
   background-repeat: no-repeat;
   font-family: "Lora", serif;
   font-weight: 400;
@@ -22,15 +15,22 @@ body {
   height: 100vh;
 }
 
+.container {
+  max-width: 1280px;
+  padding: 0 12px;
+  margin: 0 auto;
+}
+
 /* todos header section */
 header {
   height: 80px;
-  /*   background: #85a114; */
   padding: 0 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10;
+  position: sticky;
+  top: 0;
 }
 
 header .left,
@@ -63,7 +63,7 @@ header .right .notification-btn span {
   padding: 5px;
   text-align: center;
   border-radius: 50%;
-  background-color: rgb(250, 33, 33);
+  background-color: rgb(241, 56, 56);
   font-size: 12px;
 }
 
@@ -75,7 +75,7 @@ form {
 }
 
 form label {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   text-align: left;
   display: block;
@@ -84,7 +84,7 @@ form label {
 form input,
 form select {
   width: 100%;
-  padding: 6px;
+  padding: 4px;
   margin: 8px 0;
   border: 1px solid rgb(218, 240, 18);
   border-radius: 5px;
@@ -98,22 +98,39 @@ form button {
   color: #fff;
   text-transform: uppercase;
   width: 100px;
-  padding: 12px 0;
+  padding: 8px 0;
   border: none;
   border-radius: 5px;
+  margin-top: 12px;
   cursor: pointer;
-  margin: 20px 8px;
 }
 
 form button:hover {
   background: rgba(11, 93, 247, 0.6);
 }
 
-/* todos table section */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
+/* todos overview */
+.overview {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 48px 0;
 }
+
+.overview button {
+  background: rgb(241, 56, 56);
+  color: #fff;
+  border: none;
+  padding: 8px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.overview button:hover {
+  background-color: rgba(241, 56, 56, 0.5);
+}
+
+/* todos table section */
 
 table {
   border-collapse: collapse;
@@ -149,12 +166,12 @@ tbody tr:hover {
 }
 
 /* footer section */
-
 footer {
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 24px 12px;
+  color: rgb(57, 107, 13);
+  font-weight: 600;
+  margin: 12px 0;
+  text-align: center;
 }

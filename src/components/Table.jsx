@@ -1,42 +1,47 @@
-const Table = ({ todos }) => {
-  const handleClick = (event) => {
-    //  The classList.toggle method toggle class from the element
-    event.currentTarget.classList.toggle("inactive");
+const Table = ({ todos, handleComplete }) => {
+  const strikethrough = (index) => {
+    handleComplete(index);
   };
 
   return (
-    <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th>Todos</th>
-            <th>Deadline</th>
-            <th>Priority</th>
-            <th>Edit</th>
-            <th>Delete</th>
+    <table>
+      <thead>
+        <tr>
+          <th>Todos</th>
+          <th>Date</th>
+          <th>Priority</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {todos?.map((data, index) => (
+          <tr
+            key={index}
+            onClick={() => strikethrough(index)}
+            style={
+              todos.completed
+                ? { cursor: "pointer", textDecoration: "red line-through" }
+                : { cursor: "pointer" }
+            }
+          >
+            <td>{data.todo}</td>
+            <td>{data.datetime}</td>
+            <td>{data.priority}</td>
+            <td>
+              <button>
+                <i className="fa-sharp fa-solid fa-pen-to-square"></i>
+              </button>
+            </td>
+            <td>
+              <button>
+                <i className="fa-sharp fa-solid fa-trash"></i>
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {todos?.map((data, index) => (
-            <tr key={index} onClick={handleClick}>
-              <td>{data.todo}</td>
-              <td>{data.datetime}</td>
-              <td>{data.priority}</td>
-              <td>
-                <button>
-                  <i className="fa-sharp fa-solid fa-pen-to-square"></i>
-                </button>
-              </td>
-              <td>
-                <button>
-                  <i className="fa-sharp fa-solid fa-trash"></i>
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

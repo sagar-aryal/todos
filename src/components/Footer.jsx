@@ -1,11 +1,9 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ handleClearTodos }) => {
   return (
     <footer>
-      <p>Pending tasks</p>
-      <p>Completed tasks</p>
-      <button>Clear All Todos</button>
+      <p>Made with ❤️ ©SagarAryal2022</p>
     </footer>
   );
 };
