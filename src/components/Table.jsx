@@ -1,11 +1,7 @@
-import { useState } from "react";
-
 const Table = ({ todos }) => {
-  const [isActive, setIsActive] = useState(false);
-
   const handleClick = (event) => {
-    // 👇️ toggle isActive state on click
-    setIsActive((current) => !current);
+    //  The classList.toggle method toggle class from the element
+    event.currentTarget.classList.toggle("inactive");
   };
 
   return (
@@ -21,12 +17,8 @@ const Table = ({ todos }) => {
           </tr>
         </thead>
         <tbody>
-          {todos?.map((data) => (
-            <tr
-              key={data.todo}
-              className={isActive ? "inactive" : ""}
-              onClick={handleClick}
-            >
+          {todos?.map((data, index) => (
+            <tr key={index} onClick={handleClick}>
               <td>{data.todo}</td>
               <td>{data.datetime}</td>
               <td>{data.priority}</td>

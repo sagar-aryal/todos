@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
-import AddTodos from "./components/AddTodoForm";
 import Header from "./components/Header";
+import AddTodos from "./components/AddTodoForm";
 import Table from "./components/Table";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [date, setDate] = useState(new Date());
@@ -14,7 +15,7 @@ const App = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    const interval = setDate(() => setDate(new Date()), 1000);
+    const interval = setInterval(() => setDate(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -43,6 +44,7 @@ const App = () => {
         handleSubmit={handleSubmit}
       />
       <Table todos={todos} />
+      <Footer />
     </>
   );
 };
