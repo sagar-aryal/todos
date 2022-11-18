@@ -1,5 +1,4 @@
 const Table = ({ todos, handleComplete }) => {
-  console.log(todos);
   const strikethrough = (index) => {
     handleComplete(index);
   };

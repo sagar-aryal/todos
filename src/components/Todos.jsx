@@ -54,7 +54,6 @@ const Todos = () => {
   const handleComplete = (index) => {
     const newTodos = todos.map((todo, idx) => {
       if (index === idx) {
-        console.log(todo);
         return { ...todo, completed: !todo.completed };
       } else {
         return todo;
