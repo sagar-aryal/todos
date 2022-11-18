@@ -6,13 +6,34 @@ import Table from "./Table";
 import Footer from "./Footer";
 import Overview from "./Overview";
 
+const initTodos = [
+  {
+    todo: "Doctor Appoinment",
+    datetime: "2022-11-16T11.00",
+    priority: "High",
+    completed: true,
+  },
+  {
+    todo: "Family Gathering",
+    datetime: "2022-12-01T18.00",
+    priority: "High",
+    completed: false,
+  },
+  {
+    todo: "Meusum Visit",
+    datetime: "2022-12-16T02.51",
+    priority: "Low",
+    completed: false,
+  },
+];
+
 const Todos = () => {
   const [values, setvalues] = useState({
     todo: "",
     datetime: "",
     priority: "",
   });
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(initTodos);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -22,7 +43,7 @@ const Todos = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setTodos((preValues) => [...preValues, { ...values, completed: false }]);
+    setTodos((preValue) => [...preValue, { ...values, completed: false }]);
     setvalues({
       todo: "",
       datetime: "",
@@ -39,23 +60,35 @@ const Todos = () => {
         return todo;
       }
     });
-    setTodos((_) => [...todos, newTodos]);
+    setTodos((_) => newTodos);
   };
 
   const handleClearTodos = () => {
     setTodos((_) => []);
   };
 
+  const pendingTasks = todos
+    .filter((todo) => todo.completed === false)
+    .map((tasks) => tasks);
+
+  const completedTasks = todos
+    .filter((todo) => todo.completed !== false)
+    .map((tasks) => tasks);
+
   return (
     <>
-      <Header todos={todos} />
+      <Header todos={todos} pendingTasks={pendingTasks} />
       <div className="container">
         <AddTodos
           values={values}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-        <Overview handleClearTodos={handleClearTodos} />
+        <Overview
+          handleClearTodos={handleClearTodos}
+          pendingTasks={pendingTasks}
+          completedTasks={completedTasks}
+        />
         <Table todos={todos} handleComplete={handleComplete} />
       </div>
       <Footer />

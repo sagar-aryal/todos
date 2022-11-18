@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import logo from "../assets/logo.png";
 
-const Header = ({ todos }) => {
+const Header = ({ todos, pendingTasks }) => {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Header = ({ todos }) => {
         </div>
         <div className="notification-btn">
           <i className="fa-solid fa-bell">
-            <span>{todos.length}</span>
+            <span>{pendingTasks.length}</span>
           </i>
         </div>
       </div>

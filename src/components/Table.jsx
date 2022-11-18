@@ -1,4 +1,5 @@
 const Table = ({ todos, handleComplete }) => {
+  console.log(todos);
   const strikethrough = (index) => {
     handleComplete(index);
   };
@@ -20,7 +21,7 @@ const Table = ({ todos, handleComplete }) => {
             key={index}
             onClick={() => strikethrough(index)}
             style={
-              todos.completed
+              data.completed
                 ? { cursor: "pointer", textDecoration: "red line-through" }
                 : { cursor: "pointer" }
             }
