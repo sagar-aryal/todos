@@ -12,7 +12,7 @@ body {
   font-family: "Lora", serif;
   font-weight: 400;
   color: #fff;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
@@ -24,6 +24,7 @@ body {
 /* todos header section */
 header {
   height: 80px;
+  background-color: #5b801f;
   padding: 0 12px;
   display: flex;
   justify-content: space-between;
@@ -112,18 +113,27 @@ form button:hover {
 /* todos overview */
 .overview {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  gap: 12px;
   margin: 48px 0;
+  padding: 12px 6px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .overview button {
   background: rgb(241, 56, 56);
   color: #fff;
   border: none;
+  max-width: 150px;
   padding: 8px 6px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.overview h3,
+.overview button {
+  flex: 1;
 }
 
 .overview button:hover {
@@ -132,11 +142,15 @@ form button:hover {
 
 /* todos table section */
 
+.todos-table {
+  overflow-x: auto;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  margin: 20px auto;
+  border: 1px solid #ddd;
 }
 
 th,
@@ -167,11 +181,9 @@ tbody tr:hover {
 
 /* footer section */
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  margin: 48px 0 12px 0;
   color: rgb(57, 107, 13);
   font-weight: 600;
-  margin: 12px 0;
   text-align: center;
 }
