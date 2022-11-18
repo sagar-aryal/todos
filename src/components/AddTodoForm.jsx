@@ -9,6 +9,7 @@ const AddTodoForm = ({ values, handleChange, handleSubmit }) => {
         value={values.todo}
         onChange={handleChange}
         required
+        autoComplete="off"
         autoFocus
       />
       <label>Deadline</label>
