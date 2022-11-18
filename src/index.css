@@ -51,6 +51,7 @@ header .left h1 {
 }
 
 header .right .notification-btn {
+  font-size: 20px;
   padding: 0 15px;
   position: relative;
 }
@@ -58,14 +59,14 @@ header .right .notification-btn {
 header .right .notification-btn span {
   position: absolute;
   top: -15px;
-  right: -5px;
+  right: -1px;
   height: 25px;
   width: 25px;
-  padding: 5px;
+  padding: 8px;
   text-align: center;
   border-radius: 50%;
   background-color: rgb(241, 56, 56);
-  font-size: 12px;
+  font-size: 8px;
 }
 
 /* todos add to do list form */
@@ -82,8 +83,7 @@ form label {
   display: block;
 }
 
-form input,
-form select {
+form input {
   width: 100%;
   padding: 4px;
   margin: 8px 0;
@@ -144,6 +144,10 @@ form button:hover {
 
 .todos-table {
   overflow-x: auto;
+}
+
+.todos-table p {
+  text-align: center;
 }
 
 table {

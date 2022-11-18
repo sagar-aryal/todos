@@ -1,39 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+/* import useFetch from "../hooks/useFetch";
+ */
 import Header from "./Header";
 import AddTodos from "./AddTodoForm";
 import Table from "./Table";
 import Footer from "./Footer";
 import Overview from "./Overview";
 
-const initTodos = [
-  {
-    todo: "Doctor Appoinment",
-    datetime: "2022-11-16T11.00",
-    priority: "High",
-    completed: true,
-  },
-  {
-    todo: "Family Gathering",
-    datetime: "2022-12-01T18.00",
-    priority: "High",
-    completed: false,
-  },
-  {
-    todo: "Meusum Visit",
-    datetime: "2022-12-16T02.51",
-    priority: "Low",
-    completed: false,
-  },
-];
-
 const Todos = () => {
-  const [values, setvalues] = useState({
-    todo: "",
-    datetime: "",
-    priority: "",
-  });
-  const [todos, setTodos] = useState(initTodos);
+  const [todos, setTodos] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [values, setvalues] = useState(" ");
+
+  /*  const { data, error, loading } = useFetch(
+    "https://jsonplaceholder.typicode.com/todos"
+  ); */
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
+        const data = await response.json();
+        setTodos(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(todos);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -43,12 +46,14 @@ const Todos = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setTodos((preValue) => [...preValue, { ...values, completed: false }]);
-    setvalues({
-      todo: "",
-      datetime: "",
-      priority: "",
-    });
+    setTodos((preValue) => [
+      ...preValue,
+      {
+        ...values,
+        completed: false,
+      },
+    ]);
+    setvalues(" ");
   };
 
   const handleComplete = (index) => {
@@ -88,7 +93,12 @@ const Todos = () => {
           pendingTasks={pendingTasks}
           completedTasks={completedTasks}
         />
-        <Table todos={todos} handleComplete={handleComplete} />
+        <Table
+          todos={todos}
+          error={error}
+          loading={loading}
+          handleComplete={handleComplete}
+        />
       </div>
       <Footer />
     </>
