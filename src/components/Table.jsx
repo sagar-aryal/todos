@@ -1,3 +1,5 @@
+import userEvent from "@testing-library/user-event";
+
 const Table = ({ todos, error, loading, handleComplete }) => {
   const strikethrough = (index) => {
     handleComplete(index);
@@ -11,7 +13,7 @@ const Table = ({ todos, error, loading, handleComplete }) => {
         <table>
           <thead>
             <tr>
-              <th>S.N</th>
+              <th>SN</th>
               <th>Title</th>
               <th>Edit</th>
               <th>Delete</th>
@@ -20,20 +22,21 @@ const Table = ({ todos, error, loading, handleComplete }) => {
           <tbody>
             {!error &&
               todos?.map((data, index) => (
-                <tr
-                  key={index}
-                  onClick={() => strikethrough(index)}
-                  style={
-                    data.completed
-                      ? {
-                          cursor: "pointer",
-                          textDecoration: "red line-through",
-                        }
-                      : { cursor: "pointer" }
-                  }
-                >
+                <tr key={index}>
                   <td>{data.id}</td>
-                  <td>{data.title}</td>
+                  <td
+                    onClick={() => strikethrough(index)}
+                    style={
+                      data.completed
+                        ? {
+                            cursor: "pointer",
+                            textDecoration: "red line-through",
+                          }
+                        : { cursor: "pointer" }
+                    }
+                  >
+                    {data.title}
+                  </td>
 
                   <td>
                     <button>
