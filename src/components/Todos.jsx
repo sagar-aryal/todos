@@ -9,10 +9,14 @@ import Footer from "./Footer";
 import Overview from "./Overview";
 
 const Todos = () => {
-  const [todos, setTodos] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [values, setvalues] = useState(" ");
+  const [values, setValues] = useState({
+    title: "",
+    priority: "",
+  });
+
+  const [todos, setTodos] = useState([]);
 
   /*  const { data, error, loading } = useFetch(
     "https://jsonplaceholder.typicode.com/todos"
@@ -26,7 +30,13 @@ const Todos = () => {
           "https://jsonplaceholder.typicode.com/todos"
         );
         const data = await response.json();
-        setTodos(data);
+        setTodos(
+          data.map((obj) => ({
+            ...obj,
+            createdAt: new Date().toLocaleString(),
+            priority: "Low",
+          }))
+        );
       } catch (error) {
         setError(true);
       } finally {
@@ -41,23 +51,32 @@ const Todos = () => {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setvalues({ ...values, [name]: value });
+    setValues({ ...values, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setTodos((preValue) => [
-      ...preValue,
       {
         ...values,
         completed: false,
+        createdAt: new Date().toLocaleString(),
+        id: todos.length + 1,
       },
+      ...preValue,
     ]);
-    setvalues(" ");
+    setValues({
+      title: "",
+      priority: "",
+    });
   };
 
+  console.log(values);
+
   const handleUpdateTodo = (id) => {
-    console.log("update", id);
+    /*   const updateTodo = todos.filter((todo) => todo.id === id);
+    setvalues((_) => updateTodo.title);
+    setUpdate((_) => id); */
   };
 
   const handleDeleteTodo = (id) => {

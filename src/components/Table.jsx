@@ -20,6 +20,8 @@ const Table = ({
             <tr>
               <th>SN</th>
               <th>Title</th>
+              <th>Created At</th>
+              <th>Priority</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -27,8 +29,8 @@ const Table = ({
           <tbody>
             {!error &&
               todos?.map((data, index) => (
-                <tr key={index}>
-                  <td>{data.id}</td>
+                <tr key={data.id}>
+                  <td>{index + 1}</td>
                   <td
                     onClick={() => strikethrough(index)}
                     style={
@@ -42,6 +44,8 @@ const Table = ({
                   >
                     {data.title}
                   </td>
+                  <td>{data.createdAt}</td>
+                  <td>{data.priority}</td>
 
                   <td>
                     <button onClick={() => handleUpdateTodo(data.id)}>

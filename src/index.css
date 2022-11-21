@@ -83,7 +83,8 @@ form label {
   display: block;
 }
 
-form input {
+form input,
+form select {
   width: 100%;
   padding: 4px;
   margin: 8px 0;
@@ -178,11 +179,29 @@ tbody tr:hover {
   background-color: #e2dada;
 }
 
-.inactive {
-  text-decoration: line-through;
-  color: red;
+tbody .inactive {
+  text-decoration: rgb(252, 87, 87) line-through;
 }
 
+tbody button {
+  background-color: #fcf6f6;
+  border-radius: 4px;
+  padding: 2px 6px;
+  border: none;
+  cursor: pointer;
+}
+
+tbody .fa-pen-to-square {
+  color: rgb(8, 119, 223);
+  padding: 2px;
+}
+
+tbody .fa-trash {
+  color: rgb(252, 87, 87);
+  padding: 2px;
+}
+
+fa-trash
 /* footer section */
 footer {
   width: 100%;
