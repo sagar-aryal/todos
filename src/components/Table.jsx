@@ -1,6 +1,11 @@
-import userEvent from "@testing-library/user-event";
-
-const Table = ({ todos, error, loading, handleComplete }) => {
+const Table = ({
+  todos,
+  error,
+  loading,
+  handleComplete,
+  handleUpdateTodo,
+  handleDeleteTodo,
+}) => {
   const strikethrough = (index) => {
     handleComplete(index);
   };
@@ -39,12 +44,12 @@ const Table = ({ todos, error, loading, handleComplete }) => {
                   </td>
 
                   <td>
-                    <button>
+                    <button onClick={() => handleUpdateTodo(data.id)}>
                       <i className="fa-sharp fa-solid fa-pen-to-square"></i>
                     </button>
                   </td>
                   <td>
-                    <button>
+                    <button onClick={() => handleDeleteTodo(data.id)}>
                       <i className="fa-sharp fa-solid fa-trash"></i>
                     </button>
                   </td>

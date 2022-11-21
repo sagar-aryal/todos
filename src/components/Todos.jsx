@@ -56,6 +56,15 @@ const Todos = () => {
     setvalues(" ");
   };
 
+  const handleUpdateTodo = (id) => {
+    console.log("update", id);
+  };
+
+  const handleDeleteTodo = (id) => {
+    const deleteTodo = todos.filter((todo) => todo.id !== id);
+    setTodos((_) => deleteTodo);
+  };
+
   const handleComplete = (index) => {
     const newTodos = todos.map((todo, idx) => {
       if (index === idx) {
@@ -98,6 +107,8 @@ const Todos = () => {
           error={error}
           loading={loading}
           handleComplete={handleComplete}
+          handleUpdateTodo={handleUpdateTodo}
+          handleDeleteTodo={handleDeleteTodo}
         />
       </div>
       <Footer />
