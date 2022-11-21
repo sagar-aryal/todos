@@ -7,6 +7,7 @@ import AddTodos from "./AddTodoForm";
 import Table from "./Table";
 import Footer from "./Footer";
 import Overview from "./Overview";
+import Search from "./Search";
 
 const Todos = () => {
   const [error, setError] = useState(false);
@@ -38,15 +39,13 @@ const Todos = () => {
           }))
         );
       } catch (error) {
-        setError(true);
+        setError((_) => true);
       } finally {
-        setLoading(false);
+        setLoading((_) => false);
       }
     };
     fetchData();
   }, []);
-
-  console.log(todos);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -56,22 +55,20 @@ const Todos = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setTodos((preValue) => [
+    setTodos((preValues) => [
       {
         ...values,
         completed: false,
         createdAt: new Date().toLocaleString(),
         id: todos.length + 1,
       },
-      ...preValue,
+      ...preValues,
     ]);
     setValues({
       title: "",
       priority: "",
     });
   };
-
-  console.log(values);
 
   const handleUpdateTodo = (id) => {
     /*   const updateTodo = todos.filter((todo) => todo.id === id);
@@ -99,6 +96,14 @@ const Todos = () => {
     setTodos((_) => []);
   };
 
+  const handleFilterTodos = (e) => {
+    const results = todos.filter((todo) => {
+      if (e.target.value === "") return todos;
+      return todo.title.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    setTodos((_) => results);
+  };
+
   const pendingTasks = todos
     .filter((todo) => todo.completed === false)
     .map((tasks) => tasks);
@@ -121,6 +126,7 @@ const Todos = () => {
           pendingTasks={pendingTasks}
           completedTasks={completedTasks}
         />
+        <Search handleFilterTodos={handleFilterTodos} />
         <Table
           todos={todos}
           error={error}
