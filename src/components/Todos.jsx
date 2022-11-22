@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-/* import useFetch from "../hooks/useFetch";
- */
+import useFetch from "../hooks/useFetch";
+
 import Header from "./Header";
 import AddTodos from "./AddTodoForm";
 import Table from "./Table";
@@ -10,8 +10,6 @@ import Overview from "./Overview";
 import Search from "./Search";
 
 const Todos = () => {
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [values, setValues] = useState({
     title: "",
     priority: "",
@@ -19,33 +17,13 @@ const Todos = () => {
 
   const [todos, setTodos] = useState([]);
 
-  /*  const { data, error, loading } = useFetch(
+  const { data, error, loading } = useFetch(
     "https://jsonplaceholder.typicode.com/todos"
-  ); */
+  );
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/todos"
-        );
-        const data = await response.json();
-        setTodos(
-          data.map((obj) => ({
-            ...obj,
-            createdAt: new Date().toLocaleString(),
-            priority: "Low",
-          }))
-        );
-      } catch (error) {
-        setError((_) => true);
-      } finally {
-        setLoading((_) => false);
-      }
-    };
-    fetchData();
-  }, []);
+    setTodos(data);
+  }, [data]);
 
   const handleChange = (event) => {
     const name = event.target.name;
