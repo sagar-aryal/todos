@@ -22,7 +22,13 @@ const Todos = () => {
   );
 
   useEffect(() => {
-    setTodos(data);
+    setTodos(
+      data.map((obj) => ({
+        ...obj,
+        createdAt: new Date().toLocaleString(),
+        priority: "Low",
+      }))
+    );
   }, [data]);
 
   const handleChange = (event) => {
